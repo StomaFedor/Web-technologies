@@ -1,0 +1,24 @@
+{% load static %}
+
+<div class="question">
+    <div class="row">
+      <div class="col-3">
+        <div class="question-avatar">
+          <img src="{% static "img/gigachad-avatar.jpg" %}" alt="avatar">
+        </div>
+        {% include "inc/likes.html" %}
+      </div>
+      <div class="col-6">
+        <h2><a class="link-body-emphasis link-underline link-underline-opacity-0" href="{% url "question" question.id %}">{{ question.title }}</a></h2>
+        <div class="question-text"> {{ question.text }}</div>
+        <div class="row">
+          <div class="col-4">
+            <a href="{% url "question" question.id %}">Answers (3)</a>
+          </div>
+          <div class="col-8">
+            Tags: <a href="#">Technopark</a> <a href="#">VK</a>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>

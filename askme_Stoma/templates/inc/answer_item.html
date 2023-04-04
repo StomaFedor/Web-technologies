@@ -1,0 +1,21 @@
+{% load static %}
+
+<div class="question answer">
+    <div class="row">
+      <div class="col-3">
+        <div class="question-avatar">
+          <img src="{% static "img/gigachad-avatar.jpg" %}" alt="avatar">
+        </div>
+        {% include "inc/likes.html" %}
+      </div>
+      <div class="col-8">
+        <div class="answer-text">{{answer.text}}</div>
+        <div class="form-check answer-checkbox">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+            <label class="form-check-label" for="flexCheckDefault">
+              Correct!
+            </label>
+        </div>
+      </div>
+    </div>
+</div>

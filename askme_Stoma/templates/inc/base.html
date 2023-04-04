@@ -1,13 +1,14 @@
+{% load static %}
 
 <!doctype html>
 <html lang="en" class="h-100" data-bs-theme="auto">
   <head>
     <meta charset="utf-8">
     <title>Sticky Footer Navbar Template · Bootstrap v5.3</title>
-    <link href="../static/css/bootstrap.css" rel="stylesheet">
+    <link href="{% static "css/bootstrap.css" %}" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="../static/css/my.css" rel="stylesheet">
+    <link href="{% static "css/my.css" %}" rel="stylesheet" rel="stylesheet">
   </head>
 
 <header>
@@ -15,16 +16,16 @@
   <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
     <div class="container-fluid">
       <div class="navbar-avatar">
-        <img src="../static/img/gigachad-avatar.jpg">
+        <img src="{% static "img/gigachad-avatar.jpg" %}">
       </div>
-      <a class="navbar-brand" href="#">100ma</a>
+      <div class="navbar-brand" href="index.html">100ma</div>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav me-auto mb-2 mb-md-0">
           <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="#">Settings</a>
+            <a class="nav-link" aria-current="page" href="settings.html">Settings</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Log out</a>
@@ -42,13 +43,14 @@
 <!-- Begin page content -->
 <main class="flex-shrink-0">
   <div class="container">
-    <h1 class="mt-5">Name</h1>
-    <div class = "row">
+    <div class = "row base-content">
       <div class = "col-9">
-        
+
+        {% block content %} {% endblock content %}
+
       </div>
       
-      <div class = "col-3">
+      <div class = "col-3 mt-5">
         <h2>Popular tags</h2>
         <div class="tags">
           <div class="tags-text">
@@ -74,6 +76,7 @@
         </div>
       </div>
     </div>
+
   </div>
 </main>
 

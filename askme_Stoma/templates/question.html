@@ -1,178 +1,38 @@
+{% extends "inc/base.html" %}
 
-<!doctype html>
-<html lang="en" class="h-100" data-bs-theme="auto">
-  <head>
-    <meta charset="utf-8">
-    <title>Sticky Footer Navbar Template · Bootstrap v5.3</title>
-    <link href="../static/css/bootstrap.css" rel="stylesheet">
+{% load static %}
 
-    <!-- Custom styles for this template -->
-    <link href="../static/css/my.css" rel="stylesheet">
-  </head>
+{% block content %}
 
-<header>
-  <!-- Fixed navbar -->
-  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-    <div class="container-fluid">
-      <div class="navbar-avatar">
-        <img src="../static/img/gigachad-avatar.jpg">
+<div class="question-page">
+  <div class="row">
+    <div class="col-3">
+      <div class="question-page-avatar">
+        <img src="{% static "img/gigachad-avatar.jpg" %}" alt="avatar">
       </div>
-      <a class="navbar-brand" href="#">100ma</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarCollapse">
-        <ul class="navbar-nav me-auto mb-2 mb-md-0">
-          <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="#">Settings</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Log out</a>
-          </li>
-        </ul>
-        <form class="d-flex" role="search">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Ask!</button>
-        </form>
-      </div>
+      {% include "inc/likes.html" %}
     </div>
-  </nav>
-</header>
-
-<!-- Begin page content -->
-<main class="flex-shrink-0">
-  <div class="container">
-    <h1 class="mt-5"></h1>
-    <div class = "row">
-      <div class = "col-9">
-        <div class="question-page">
-          <div class="row">
-            <div class="col-3">
-              <div class="question-page-avatar">
-                <img src="../static/img/gigachad-avatar.jpg" alt="avatar">
-              </div>
-              <div class="question-likes">
-                <div class="row">
-                  <div class="col-1">
-                    <img src="../static/img/suit-heart.svg" alt="likes">
-                  </div>
-                  <div class="col-1">5</div>
-                  <div class="col-1">
-                    <div class="question-likes-arrows">
-                      <img src="../static/img/arrow-up-short.svg">
-                      <img src="../static/img/arrow-down-short.svg">
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-8">
-              <h2><a class="link-body-emphasis link-underline link-underline-opacity-0" href="#">Awesome question</a></h2>
-              <div class="question-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Blandit turpis cursus in hac habitasse platea. Lorem ipsum dolor sit amet consectetur. Enim nulla aliquet porttitor lacus luctus accumsan tortor posuere. Nibh nisl condimentum id venenatis a. Nunc aliquet bibendum enim facilisis gravida neque convallis. Nibh sit amet commodo nulla. Lacus suspendisse faucibus interdum posuere. Dis parturient montes nascetur ridiculus mus mauris vitae ultricies leo. </div>
-              <div class="row">
-                <div class="col-8">
-                  Tags: <a href="#">Technopark</a> <a href="#">VK</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="question answer">
-            <div class="row">
-              <div class="col-3">
-                <div class="question-avatar">
-                  <img src="../static/img/gigachad-avatar.jpg" alt="avatar">
-                </div>
-                <div class="question-likes">
-                  <div class="row">
-                    <div class="col-1">
-                      <img src="../static/img/suit-heart.svg" alt="likes">
-                    </div>
-                    <div class="col-1">5</div>
-                    <div class="col-1">
-                      <div class="question-likes-arrows">
-                        <img src="../static/img/arrow-up-short.svg">
-                        <img src="../static/img/arrow-down-short.svg">
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-8">
-                <div class="answer-text">Ultrices gravida dictum fusce ut placerat orci nulla pellentesque dignissim. Pretium nibh ipsum consequat nisl vel pretium lectus quam. Molestie nunc non blandit massa enim nec. Vulputate enim nulla aliquet porttitor lacus luctus accumsan tortor.</div>
-                <div class="form-check answer-checkbox">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                    <label class="form-check-label" for="flexCheckDefault">
-                      Correct!
-                    </label>
-                </div>
-              </div>
-            </div>
-        </div>
-        <div class="question answer">
-            <div class="row">
-              <div class="col-3">
-                <div class="question-avatar">
-                  <img src="../static/img/gigachad-avatar.jpg" alt="avatar">
-                </div>
-                <div class="question-likes">
-                  <div class="row">
-                    <div class="col-1">
-                      <img src="../static/img/suit-heart.svg" alt="likes">
-                    </div>
-                    <div class="col-1">5</div>
-                    <div class="col-1">
-                      <div class="question-likes-arrows">
-                        <img src="../static/img/arrow-up-short.svg">
-                        <img src="../static/img/arrow-down-short.svg">
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-8">
-                <div class="answer-text">Ultrices gravida dictum fusce ut placerat orci nulla pellentesque dignissim. Pretium nibh ipsum consequat nisl vel pretium lectus quam. Molestie nunc non blandit massa enim nec. Vulputate enim nulla aliquet porttitor lacus luctus accumsan tortor.</div>
-                <div class="form-check answer-checkbox">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                    <label class="form-check-label" for="flexCheckDefault">
-                      Correct!
-                    </label>
-                </div>
-              </div>
-            </div>
-        </div>
-        <div class="line"></div>
-        <textarea class="form-control answer-textarea" rows="5" placeholder="Enter your answer here..."></textarea>
-        <button type="button" class="btn btn-dark">Answer</button>
-      </div>
-      
-      <div class = "col-3">
-        <h2>Popular tags</h2>
-        <div class="tags">
-          <div class="tags-text">
-            <a href="#">Vk</a>
-            <a href="#">Technopark</a>
-            <a href="#">python</a>
-            <a href="#">C#</a>
-          </div>
-        </div>
-        <div class="members">
-          <h2>Best members</h2>
-          <div class="members-hrefs">
-            <div class="members-href">
-              <a href="#">Gigachad</a>
-            </div>
-            <div class="members-href">
-              <a href="#">TechnoparkUser</a>
-            </div>
-            <div class="members-href">
-              <a href="#">100ma</a>
-            </div>
-          </div>
+    <div class="col-8">
+      <h2><a class="link-body-emphasis link-underline link-underline-opacity-0" href="">{{question.title}}</a></h2>
+      <div class="question-text">{{question.text}}</div>
+      <div class="row">
+        <div class="col-8">
+          Tags: <a href="#">Technopark</a> <a href="#">VK</a>
         </div>
       </div>
     </div>
   </div>
-</main>
+</div>
 
-</html>
+{% for answer in answers %}
+  {% include "inc/answer_item.html" %}
+{% endfor %}
+
+<div class="line"></div>
+
+{% include "inc/paginator.html" %}
+
+<textarea class="form-control answer-textarea" rows="5" placeholder="Enter your answer here..."></textarea>
+<button type="button" class="btn btn-dark">Answer</button>
+
+{% endblock content %}

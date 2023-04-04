@@ -134,3 +134,12 @@ main > .container {
 .profile-settings-btn {
     margin-top: 5%;
 }
+
+.base-content {
+    margin-top: 4%;
+}
+
+.index-header {
+    display: inline-block;
+    margin-right: 5%;
+}
