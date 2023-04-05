@@ -143,3 +143,8 @@ main > .container {
     display: inline-block;
     margin-right: 5%;
 }
+
+.tags-header {
+    display: inline-block;
+    margin-right: 2%;
+}

@@ -16,7 +16,10 @@
             <a href="{% url "question" question.id %}">Answers (3)</a>
           </div>
           <div class="col-8">
-            Tags: <a href="#">Technopark</a> <a href="#">VK</a>
+            Tags: 
+            {% for tag in question.tags %}
+              <a href="{% url "tags" tag.id %}">{{tag.text}}</a>
+            {% endfor %}
           </div>
         </div>
       </div>

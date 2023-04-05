@@ -18,22 +18,22 @@
       <div class="navbar-avatar">
         <img src="{% static "img/gigachad-avatar.jpg" %}">
       </div>
-      <div class="navbar-brand" href="index.html">100ma</div>
+      <a class="navbar-brand" href="{% url "index" %}">100ma</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav me-auto mb-2 mb-md-0">
           <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="settings.html">Settings</a>
+            <a class="nav-link" aria-current="page" href="{% url "settings" %}">Settings</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Log out</a>
+            <a class="nav-link" href="{% url "login" %}">Log out</a>
           </li>
         </ul>
         <form class="d-flex" role="search">
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Ask!</button>
+          <a class="btn btn-outline-success" href="{% url "ask" %}">Ask!</a>
         </form>
       </div>
     </div>
@@ -54,10 +54,9 @@
         <h2>Popular tags</h2>
         <div class="tags">
           <div class="tags-text">
-            <a href="#">Vk</a>
-            <a href="#">Technopark</a>
-            <a href="#">python</a>
-            <a href="#">C#</a>
+            {% for tag in tags %}
+              <a href="{% url "tags" tag.id %}">{{tag.text}}</a>
+            {% endfor %}
           </div>
         </div>
         <div class="members">

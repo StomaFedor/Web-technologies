@@ -9,7 +9,7 @@
   <h4><a href="#">Hot questions</a></h4>
 </div>
 
-{% for question in questions %}
+{% for question in page_obj %}
   {% include "inc/question_item.html" %}
 {% endfor %}
 

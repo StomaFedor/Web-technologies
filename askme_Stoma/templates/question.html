@@ -13,18 +13,21 @@
       {% include "inc/likes.html" %}
     </div>
     <div class="col-8">
-      <h2><a class="link-body-emphasis link-underline link-underline-opacity-0" href="">{{question.title}}</a></h2>
+      <h2><a class="link-body-emphasis link-underline link-underline-opacity-0" href="{% url "question" question.id %}">{{question.title}}</a></h2>
       <div class="question-text">{{question.text}}</div>
       <div class="row">
         <div class="col-8">
-          Tags: <a href="#">Technopark</a> <a href="#">VK</a>
+          Tags: 
+          {% for tag in question.tags %}
+              <a href="/tags/{{tag.id}}/">{{tag.text}}</a>
+          {% endfor %}
         </div>
       </div>
     </div>
   </div>
 </div>
 
-{% for answer in answers %}
+{% for answer in page_obj %}
   {% include "inc/answer_item.html" %}
 {% endfor %}
 
