@@ -64,6 +64,12 @@ main > .container {
     min-height: 24px;
 }
 
+.new-question-fields-error {
+    padding: 4px;
+    border-radius: 3px;
+    min-height: 24px;
+}
+
 .new-question-title {
     margin-top: 50px;
 }
