@@ -10,16 +10,18 @@
       <div class="question-page-avatar">
         <img src="{% static "img/gigachad-avatar.jpg" %}" alt="avatar">
       </div>
-      {% include "inc/likes.html" %}
+      {% with question as item %}
+          {% include "inc/likes.html" %}
+        {% endwith %}
     </div>
     <div class="col-8">
-      <h2><a class="link-body-emphasis link-underline link-underline-opacity-0" href="{% url "question" question.id %}">{{question.title}}</a></h2>
+      <h2><a class="link-body-emphasis link-underline link-underline-opacity-0" href="{% url "question" question.id %}">{{question.name}}</a></h2>
       <div class="question-text">{{question.text}}</div>
       <div class="row">
         <div class="col-8">
           Tags: 
-          {% for tag in question.tags %}
-              <a href="/tags/{{tag.id}}/">{{tag.text}}</a>
+          {% for tag in question.tags.all %}
+              <a href="/tags/{{tag.id}}/">{{tag.name}}</a>
           {% endfor %}
         </div>
       </div>

@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'askme',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -75,8 +76,17 @@ WSGI_APPLICATION = 'askme_Stoma.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+
+        'NAME': 'askmedb',
+
+        'USER': 'postgres',
+
+        'PASSWORD': 'Fndya21003',
+
+        'HOST': 'localhost',
+
+        'PORT': '5432',
     }
 }
 

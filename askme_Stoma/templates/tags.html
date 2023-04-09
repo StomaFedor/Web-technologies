@@ -6,7 +6,7 @@
   <h1>Tag:</h1>
 </div>
 <div class="tags-header">
-  <h1><a class="link-body-emphasis link-underline link-underline-opacity-0" href="{% url "tags" tag.id %}">{{tag.text}}</a></h1>
+  <h1><a class="link-body-emphasis link-underline link-underline-opacity-0" href="{% url "tags" tag.id %}">{{tag.name}}</a></h1>
 </div>
 
 {% for question in page_obj %}

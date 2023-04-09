@@ -55,22 +55,18 @@
         <div class="tags">
           <div class="tags-text">
             {% for tag in tags %}
-              <a href="{% url "tags" tag.id %}">{{tag.text}}</a>
+              <a href="{% url "tags" tag.id %}">{{tag.name}}</a>
             {% endfor %}
           </div>
         </div>
         <div class="members">
           <h2>Best members</h2>
           <div class="members-hrefs">
-            <div class="members-href">
-              <a href="#">Gigachad</a>
-            </div>
-            <div class="members-href">
-              <a href="#">TechnoparkUser</a>
-            </div>
-            <div class="members-href">
-              <a href="#">100ma</a>
-            </div>
+            {% for profile in profiles %}
+              <div class="members-href">
+                {{profile.user.username}}
+              </div>
+            {% endfor %}
           </div>
         </div>
       </div>
