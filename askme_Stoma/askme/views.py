@@ -5,10 +5,6 @@ from django.core.paginator import Paginator
 # Create your views here.
 def index(request):
     page_obj = paginator(request, models.Question.objects.GetNewQuestions())
-    generateUser()
-    generateProfile()
-    generateQuestion()
-    generateAnswer()
     context = {'tags': models.Tag.objects.GetTopTags(),
                'page_obj': page_obj,
                'profiles': models.Profile.objects.GetTopUsers()}
