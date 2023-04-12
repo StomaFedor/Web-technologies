@@ -5,21 +5,25 @@ from askme_Stoma.askme import models
 class Command(BaseCommand):
     help = 'Random filling of the database'
 
+    def add_arguments(self, parser):
+        parser.add_argument('ratio', type=int, help='Указывает сколько пользователей необходимо создать')
+
     def handle(self, *args, **kwargs):
-        self.generateUser()
-        self.generateProfile()
+        ratio = kwargs['ratio']
+        self.generateUser(ratio)
+        self.generateProfile(ratio)
         self.generateQuestion()
         self.generateAnswer()
 
-    def generateUser(self):
+    def generateUser(self, ratio):
         list = []
-        for i in range(10000):
+        for i in range(ratio):
             newUser = models.User(username=f'abobaUser{i}', email=f'aboba{i}@crazymail.com', password=f'mypassword{i}')
             list.append(newUser)
         models.User.objects.bulk_create(list)
 
-    def generateProfile(self):
-        profiles = [models.Profile(user=models.User.objects.filter(id=i)[0], avatar='gigachad-avatar.jpg') for i in range(1, 10001)]
+    def generateProfile(self, ratio):
+        profiles = [models.Profile(user=models.User.objects.filter(id=i)[0], avatar='gigachad-avatar.jpg') for i in range(1, ratio + 1)]
         models.Profile.objects.bulk_create(profiles)
 
     def generateQuestion(self):

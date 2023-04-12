@@ -25,9 +25,9 @@ class QuestionManager(models.Manager):
         return self.order_by('-data')
     
     def GetQuestionById(self, question_id):
-        if self.count() <= question_id:
-            question_id = self.count()
-        return self.filter(id=question_id)[0]
+        if self.filter(id=question_id).exists():
+            return self.get(id=question_id)
+        return self.last()
     
     def GetTopQuestionsOnTag(self, tag_id):
         return self.filter(tags__id=tag_id).order_by('-like__rating') 
@@ -64,9 +64,9 @@ class Answer(models.Model):
 
 class TagManager(models.Manager):
     def GetTagById(self, tag_id):
-        if self.count() <= tag_id:
-            tag_id = self.count()
-        return self.filter(id=tag_id)[0]
+        if self.filter(id=tag_id).exists():
+            return self.get(id=tag_id)
+        return self.last()
     
     def GetTopTags(self):
         tags = self.annotate(qCount=models.Count('question')) 
