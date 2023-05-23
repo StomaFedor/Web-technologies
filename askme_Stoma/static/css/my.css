@@ -1,0 +1,156 @@
+main > .container {
+    padding: 60px 15px 0;
+    
+}
+
+.question {
+    padding: 10px;
+    min-height: 200px;
+    border: 2px solid black;
+    border-radius: 7px;
+    margin-bottom: 10px;
+}
+
+.question-avatar {
+    height: 120px;
+    width: 120px;
+    margin-bottom: 10%;
+}
+
+.question-avatar > img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.question-text {
+    margin-bottom: 5%;
+}
+
+.question-likes {
+    margin-left: 13px;
+    width: 50%;
+    border: 2px solid black;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.question-likes-arrows {
+    font-size: 50%;
+}
+
+.question-likes-arrows > img {
+    height: 12px;
+}
+
+.navbar-avatar {
+    height: 50px;
+    width: 50px;
+    margin-right: 1%;
+}
+
+.navbar-avatar > img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.new-question-fields {
+    padding: 4px;
+    border-radius: 3px;
+    margin-bottom: 5%;
+    min-height: 24px;
+}
+
+.new-question-fields-error {
+    padding: 4px;
+    border-radius: 3px;
+    min-height: 24px;
+}
+
+.new-question-title {
+    margin-top: 50px;
+}
+
+.tags {
+    margin-bottom: 10%;
+}
+
+.members-href {
+    margin-bottom: 10px;
+}
+
+.question-page {
+    padding: 10px;
+    min-height: 200px;
+    margin-bottom: 10px;
+    border-bottom: 2px solid black;
+}
+
+.question-page-avatar {
+    height: 150px;
+    width: 150px;
+    margin-bottom: 10%;
+}
+
+.question-page-avatar > img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.answer {
+    position:relative;
+}
+
+.answer-checkbox {
+    position:absolute;
+    bottom: 10px;
+}
+
+.answer-text {
+    margin-bottom: 7%;
+}
+
+.line {
+    border-bottom: 2px solid black;
+    margin-bottom: 10px;
+}
+
+.answer-textarea {
+    margin-bottom: 10px;
+}
+
+.profile-settings-avatar {
+    height: 100px;
+    width: 100px;
+    margin-bottom: 3%;
+}
+
+.profile-settings-avatar > img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.profile-settings-btn {
+    margin-top: 5%;
+}
+
+.base-content {
+    margin-top: 4%;
+}
+
+.index-header {
+    display: inline-block;
+    margin-right: 5%;
+}
+
+.tags-header {
+    display: inline-block;
+    margin-right: 2%;
+}

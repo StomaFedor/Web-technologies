@@ -1,0 +1,53 @@
+{% extends request.user.is_authenticated|yesno:"inc/base.html,inc/base_nologin.html" %}
+{% load bootstrap5 %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="question-page">
+  <div class="row">
+    <div class="col-3">
+      <div class="question-page-avatar">
+        <img src="{% static "img/gigachad-avatar.jpg" %}" alt="avatar">
+      </div>
+      {% with question as item %}
+          {% include "inc/likes.html" %}
+        {% endwith %}
+    </div>
+    <div class="col-8">
+      <h2><a class="link-body-emphasis link-underline link-underline-opacity-0" href="{% url "question" question.id %}">{{question.name}}</a></h2>
+      <div class="question-text">{{question.text}}</div>
+      <div class="row">
+        <div class="col-8">
+          Tags: 
+          {% for tag in question.tags.all %}
+              <a href="/tags/{{tag.id}}/">{{tag.name}}</a>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% for answer in page_obj %}
+  {% include "inc/answer_item.html" %}
+{% endfor %}
+
+<div class="line"></div>
+
+{% include "inc/paginator.html" %}
+
+<form novalidate method="post">
+  <div class="row">
+    <div>
+      {% csrf_token %}
+      {% bootstrap_form form %}
+    </div>
+  </div>
+  <div class="profile-settings-btn">
+    <button class="btn btn-dark mb-3" type="submit">Answer!</button>
+  </div>
+</form>
+
+{% endblock content %}

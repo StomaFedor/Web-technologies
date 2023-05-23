@@ -1,0 +1,17 @@
+{% extends request.user.is_authenticated|yesno:"inc/base.html,inc/base_nologin.html" %}
+
+{% block content %}
+
+<div class="index-header">
+  <h1>New questions</h1>
+</div>
+<div class="index-header">
+  <h4><a href="{% url "hot" %}">Hot questions</a></h4>
+</div>
+
+{% for question in page_obj %}
+  {% include "inc/question_item.html" %}
+{% endfor %}
+
+{% include "inc/paginator.html" %}
+{% endblock content %}

@@ -1,0 +1,29 @@
+{% load static %}
+
+<div class="question">
+    <div class="row">
+      <div class="col-3">
+        <div class="question-avatar">
+          <img src="{% static "img/gigachad-avatar.jpg" %}" alt="avatar">
+        </div>
+        {% with question as item %}
+          {% include "inc/likes.html" %}
+        {% endwith %}
+      </div>
+      <div class="col-6">
+        <h2><a class="link-body-emphasis link-underline link-underline-opacity-0" href="{% url "question" question.id %}">{{ question.name }}</a></h2>
+        <div class="question-text"> {{ question.text }}</div>
+        <div class="row">
+          <div class="col-4">
+            <a href="{% url "question" question.id %}">Answers ({{question.answer_set.all.count}})</a>
+          </div>
+          <div class="col-8">
+            Tags: 
+            {% for tag in question.tags.all %} 
+              <a href="{% url "tags" tag.id %}">{{tag.name}}</a>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+</div>

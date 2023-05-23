@@ -1,0 +1,49 @@
+{% extends "inc/base.html" %}
+
+{% load static %} 
+
+{% block content %}
+
+<h1>Settings: 100ma</h1>
+<div class="profile-settings">
+    <div class="row">
+      <div class="col-2 new-question-title">
+        Login
+      </div>
+      <div class="col-8">
+        <input class="form-control new-question-fields new-question-title" placeholder="100ma">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-2">
+        Email
+      </div>
+      <div class="col-8">
+        <input class="form-control new-question-fields" placeholder="100ma@gmail.com">
+    </div>
+    </div>
+    <div class="row">
+        <div class="col-2">
+          NickName
+        </div>
+        <div class="col-8">
+          <input class="form-control new-question-fields" placeholder="100ma">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-2">
+          Upload avatar
+        </div>
+        <div class="col-8">
+            <div class="profile-settings-avatar">
+                <img src="{% static "img/gigachad-avatar.jpg" %}" alt="avatar">
+            </div>
+            <input type="file" class="form-control-file">
+            <div class="profile-settings-btn">
+                <a class="btn btn-dark mb-3" href="{% url "index" %}">Save</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

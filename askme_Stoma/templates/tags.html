@@ -1,0 +1,18 @@
+{% extends request.user.is_authenticated|yesno:"inc/base.html,inc/base_nologin.html" %}
+
+{% block content %}
+
+<div class="tags-header">
+  <h1>Tag:</h1>
+</div>
+<div class="tags-header">
+  <h1><a class="link-body-emphasis link-underline link-underline-opacity-0" href="{% url "tags" tag.id %}">{{tag.name}}</a></h1>
+</div>
+
+{% for question in page_obj %}
+  {% include "inc/question_item.html" %}
+{% endfor %}
+
+{% include "inc/paginator.html" %}
+
+{% endblock content %}
