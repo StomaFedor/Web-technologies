@@ -9,7 +9,7 @@ class ProfileManager(models.Manager):
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    avatar = models.ImageField(default=0)
+    avatar = models.ImageField(blank=True, null=True, upload_to='avatars/%Y/%m/%d/', default='default_avatar.jpeg')
 
     objects = ProfileManager()
 
@@ -19,7 +19,7 @@ class Profile(models.Model):
 
 class QuestionManager(models.Manager):
     def GetTopQuestions(self):
-        return self.order_by('-like__rating')
+        return self.order_by('-rating')
     
     def GetNewQuestions(self):
         return self.order_by('-data')
@@ -30,7 +30,7 @@ class QuestionManager(models.Manager):
         return self.last()
     
     def GetTopQuestionsOnTag(self, tag_id):
-        return self.filter(tags__id=tag_id).order_by('-like__rating') 
+        return self.filter(tags__id=tag_id).order_by('-rating') 
 
 class Question(models.Model):
     user = models.ForeignKey('Profile', on_delete=models.CASCADE)
@@ -39,6 +39,7 @@ class Question(models.Model):
     like = models.OneToOneField('Like', on_delete=models.PROTECT)
     data = models.DateField(auto_now_add=True)
     tags = models.ManyToManyField('Tag')
+    rating = models.IntegerField(default=0)
 
     objects = QuestionManager()
 
@@ -55,6 +56,7 @@ class Answer(models.Model):
     text = models.CharField(max_length=1000)
     correct = models.BooleanField(default=False)
     like = models.OneToOneField('Like', on_delete=models.PROTECT)
+    rating = models.IntegerField(default=0)
 
     objects = AnswerManager()
 
@@ -87,3 +89,13 @@ class Like(models.Model):
  #наоборот многие ко многим
     def __str__(self):
         return f'id={self.id}; likes={self.rating}'
+    
+class LikeQuestion(models.Model):
+    question = models.ForeignKey(Question, on_delete=models.CASCADE)
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    rate = models.BooleanField()
+
+class LikeAnswer(models.Model):
+    answer = models.ForeignKey(Answer, on_delete=models.CASCADE)
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    rate = models.BooleanField()

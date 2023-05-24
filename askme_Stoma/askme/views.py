@@ -1,12 +1,14 @@
-from askme.forms import RegistrationForm
+from django.http import HttpResponse, JsonResponse
 from . import models
-from askme.forms import LoginForm , NewQuestionForm, NewAnswerForm
+from askme.forms import LoginForm, RegistrationForm, NewQuestionForm, NewAnswerForm, SettingsForm
 
+from django.forms import model_to_dict
 from django.shortcuts import render, redirect
 from django.core.paginator import Paginator
 from django.contrib import auth
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.http import require_http_methods, require_POST
 
 
 # Create your views here.
@@ -71,9 +73,18 @@ def login(request):
 
 
 @login_required(login_url='/login', redirect_field_name='continue')
+@require_http_methods(['GET', 'POST'])
 def settings(request):
+    if (request.method == 'GET'):
+        data = model_to_dict(request.user)
+        settings_form = SettingsForm(initial=data)
+    elif (request.method == 'POST'):
+        settings_form = SettingsForm(request.POST, files=request.FILES, instance=request.user)
+        if settings_form.is_valid():
+            settings_form.save()
     context = {'tags': models.Tag.objects.GetTopTags(),
-               'profiles': models.Profile.objects.GetTopUsers()}
+               'profiles': models.Profile.objects.GetTopUsers(),
+               'form': settings_form}
     return render(request, 'settings.html', context)
 
 
@@ -120,6 +131,97 @@ def tags(request, tag_id):
                'profiles': models.Profile.objects.GetTopUsers()}
     return render(request, 'tags.html', context)
 
+@login_required(login_url='/login', redirect_field_name='continue')
+@require_POST
+def question_vote_up(request):
+    question_id = request.POST['question_id']
+    question = models.Question.objects.get(id=question_id)
+    if models.LikeQuestion.objects.filter(question=question, profile=request.user.profile).exists():
+        like = models.LikeQuestion.objects.get(question=question, profile=request.user.profile)
+        if like.rate == False:
+            like.delete()
+            question.rating += 1
+            question.save()
+        return JsonResponse({
+            'new_rating': question.rating
+        })
+    like = models.LikeQuestion.objects.create(question=question, profile=request.user.profile, rate=True)
+    like.save()
+    question.rating += 1
+    question.save()
+    return JsonResponse({
+        'new_rating': question.rating
+    })
+
+
+@login_required(login_url='/login', redirect_field_name='continue')
+@require_POST
+def question_vote_down(request):
+    question_id = request.POST['question_id']
+    question = models.Question.objects.get(id=question_id)
+    if models.LikeQuestion.objects.filter(question=question, profile=request.user.profile).exists():
+        like = models.LikeQuestion.objects.get(question=question, profile=request.user.profile)
+        if like.rate == True:
+            like.delete()
+            question.rating -= 1
+            question.save()
+        return JsonResponse({
+            'new_rating': question.rating
+        })
+    like = models.LikeQuestion.objects.create(question=question, profile=request.user.profile, rate=False)
+    like.save()
+    question.rating -= 1
+    question.save()
+    return JsonResponse({
+        'new_rating': question.rating
+    })
+
+
+@login_required(login_url='/login', redirect_field_name='continue')
+@require_POST
+def answer_vote_down(request):
+    answer_id = request.POST['answer_id']
+    answer = models.Answer.objects.get(id=answer_id)
+    if models.LikeAnswer.objects.filter(answer=answer, profile=request.user.profile).exists():
+        like = models.LikeAnswer.objects.get(answer=answer, profile=request.user.profile)
+        if like.rate == True:
+            like.delete()
+            answer.rating -= 1
+            answer.save()
+        return JsonResponse({
+            'new_rating': answer.rating
+        })
+    like = models.LikeAnswer.objects.create(answer=answer, profile=request.user.profile, rate=False)
+    like.save()
+    answer.rating -= 1
+    answer.save()
+    return JsonResponse({
+        'new_rating': answer.rating
+    })
+
+
+@login_required(login_url='/login', redirect_field_name='continue')
+@require_POST
+def answer_vote_up(request):
+    answer_id = request.POST['answer_id']
+    answer = models.Answer.objects.get(id=answer_id)
+    if models.LikeAnswer.objects.filter(answer=answer, profile=request.user.profile).exists():
+        like = models.LikeAnswer.objects.get(answer=answer, profile=request.user.profile)
+        if like.rate == False:
+            like.delete()
+            answer.rating += 1
+            answer.save()
+        return JsonResponse({
+            'new_rating': answer.rating
+        })
+    like = models.LikeAnswer.objects.create(answer=answer, profile=request.user.profile, rate=True)
+    like.save()
+    answer.rating += 1
+    answer.save()
+    return JsonResponse({
+        'new_rating': answer.rating
+    })
+
 
 def paginator(request, model):
     contact_list = model
@@ -127,3 +229,17 @@ def paginator(request, model):
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     return page_obj
+
+@login_required(login_url='/login', redirect_field_name='continue')
+@require_POST
+def check_field(request):
+    answer_id = request.POST['answer_id']
+    answer = models.Answer.objects.get(id=answer_id)
+    if answer.correct:
+        answer.correct = False
+    else:
+        answer.correct = True
+    answer.save()
+    return JsonResponse({
+        'new_correct': answer.correct
+    })

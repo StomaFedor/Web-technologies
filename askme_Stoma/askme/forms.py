@@ -19,7 +19,10 @@ class RegistrationForm(forms.ModelForm):
         fields = ['username', 'email', 'first_name', 'last_name']
     
     def save(self):
-        return User.objects.create_user(**self.cleaned_data)
+        user = User.objects.create_user(**self.cleaned_data)
+        profile = models.Profile.objects.create(user=user)
+        profile.save()
+        return user
     
 class NewQuestionForm(forms.ModelForm):
     class Meta:
@@ -51,3 +54,17 @@ class NewAnswerForm(forms.Form):
         answer.like = like
         answer.save()
         return answer
+    
+class SettingsForm(forms.ModelForm):
+    avatar = forms.ImageField(required=False)
+
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'last_name', 'first_name', 'avatar']
+
+    def save(self, commit=True):
+        user = super().save(commit) #вызывает метод базового класса
+        profile = user.profile
+        profile.avatar = self.cleaned_data['avatar']
+        profile.save()
+        return user

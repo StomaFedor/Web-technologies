@@ -103,6 +103,11 @@ main > .container {
 }
 
 .answer {
+    padding: 10px;
+    min-height: 200px;
+    border: 2px solid black;
+    border-radius: 7px;
+    margin-bottom: 10px;
     position:relative;
 }
 
@@ -153,4 +158,16 @@ main > .container {
 .tags-header {
     display: inline-block;
     margin-right: 2%;
+}
+
+.settings-avatar {
+    height: 100px;
+    width: 100px;
+}
+
+.settings-avatar > img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 50%;
 }

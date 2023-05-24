@@ -16,7 +16,7 @@
   <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
     <div class="container-fluid">
       <div class="navbar-avatar">
-        <img src="{% static "img/gigachad-avatar.jpg" %}">
+        <img src="{{request.user.profile.avatar.url}}" alt="avatar">
       </div>
       <a class="navbar-brand" href="{% url "index" %}">{{request.user.username}}</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">

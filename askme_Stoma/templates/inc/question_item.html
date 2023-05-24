@@ -1,10 +1,14 @@
 {% load static %}
 
-<div class="question">
+<div class="question question-vote">
     <div class="row">
       <div class="col-3">
         <div class="question-avatar">
-          <img src="{% static "img/gigachad-avatar.jpg" %}" alt="avatar">
+          {%if question.user.avatar %}
+            <img src="{{question.user.avatar.url}}" alt="avatar">
+          {% else %}
+            <img src="{% static 'img/default_avatar.jpeg'%}" alt="avatar">
+          {% endif %}
         </div>
         {% with question as item %}
           {% include "inc/likes.html" %}

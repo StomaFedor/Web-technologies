@@ -1,4 +1,5 @@
 {% extends request.user.is_authenticated|yesno:"inc/base.html,inc/base_nologin.html" %}
+{% load static %}
 
 {% block content %}
 
@@ -12,6 +13,9 @@
 {% for question in page_obj %}
   {% include "inc/question_item.html" %}
 {% endfor %}
+
+<script src="{% static "js/jquery-3.7.0.min.js"%}"></script>
+<script src="{% static "js/main.js"%}"></script>
 
 {% include "inc/paginator.html" %}
 {% endblock content %}

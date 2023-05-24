@@ -1,4 +1,5 @@
 {% extends "inc/base.html" %}
+{% load bootstrap5 %}
 
 {% load static %} 
 
@@ -6,44 +7,22 @@
 
 <h1>Settings: 100ma</h1>
 <div class="profile-settings">
+  <form novalidate action="/settings" method="post" enctype="multipart/form-data">
     <div class="row">
-      <div class="col-2 new-question-title">
-        Login
+      <div class="col-7">
+        {% csrf_token %}
+        {% bootstrap_form form %}
       </div>
-      <div class="col-8">
-        <input class="form-control new-question-fields new-question-title" placeholder="100ma">
+      <div class="col-5">
+        <div class="settings-avatar">
+          <img src="{{request.user.profile.avatar.url}}" alt="avatar">
+        </div>        
       </div>
     </div>
-    <div class="row">
-      <div class="col-2">
-        Email
-      </div>
-      <div class="col-8">
-        <input class="form-control new-question-fields" placeholder="100ma@gmail.com">
+    <div class="profile-settings-btn">
+      <button class="btn btn-dark mb-3" type="submit">Register!</button>
     </div>
-    </div>
-    <div class="row">
-        <div class="col-2">
-          NickName
-        </div>
-        <div class="col-8">
-          <input class="form-control new-question-fields" placeholder="100ma">
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-2">
-          Upload avatar
-        </div>
-        <div class="col-8">
-            <div class="profile-settings-avatar">
-                <img src="{% static "img/gigachad-avatar.jpg" %}" alt="avatar">
-            </div>
-            <input type="file" class="form-control-file">
-            <div class="profile-settings-btn">
-                <a class="btn btn-dark mb-3" href="{% url "index" %}">Save</a>
-            </div>
-        </div>
-    </div>
+  </form>
 </div>
 
 {% endblock content %}

@@ -1,10 +1,10 @@
 {% load static %}
 
-<div class="question answer">
+<div class="answer answer-vote">
     <div class="row">
       <div class="col-3">
         <div class="question-avatar">
-          <img src="{% static "img/gigachad-avatar.jpg" %}" alt="avatar">
+          <img src="{{answer.question.user.avatar.url}}" alt="avatar">
         </div>
         {% with answer as item %}
           {% include "inc/likes.html" %}
@@ -13,9 +13,11 @@
       <div class="col-8">
         <div class="answer-text">{{answer.text}}</div>
         <div class="form-check answer-checkbox">
-            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" {% if answer.correct %}checked{% endif %}>
+            {% if request.user.profile == answer.question.user %}
+            <input class="form-check-input check-field" type="checkbox" data-id="{{answer.id}}" id="flexCheckDefault" {% if answer.correct %}checked{% endif %}>
+            {% endif %}
             <label class="form-check-label" for="flexCheckDefault">
-              Correct!
+              {{answer.correct}}
             </label>
         </div>
       </div>

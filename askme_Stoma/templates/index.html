@@ -1,5 +1,7 @@
 {% extends request.user.is_authenticated|yesno:"inc/base.html,inc/base_nologin.html" %}
 
+{% load static %}
+
 {% block content %}
 
 <div class="index-header">
@@ -14,4 +16,8 @@
 {% endfor %}
 
 {% include "inc/paginator.html" %}
+
+<script src="{% static "js/jquery-3.7.0.min.js"%}"></script>
+<script src="{% static "js/main.js"%}"></script>
+
 {% endblock content %}

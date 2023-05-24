@@ -7,9 +7,9 @@
 
 <div class="question-page">
   <div class="row">
-    <div class="col-3">
+    <div class="col-3 question-vote">
       <div class="question-page-avatar">
-        <img src="{% static "img/gigachad-avatar.jpg" %}" alt="avatar">
+        <img src="{{question.user.avatar.url}}" alt="avatar">
       </div>
       {% with question as item %}
           {% include "inc/likes.html" %}
@@ -49,5 +49,8 @@
     <button class="btn btn-dark mb-3" type="submit">Answer!</button>
   </div>
 </form>
+
+<script src="{% static "js/jquery-3.7.0.min.js"%}"></script>
+<script src="{% static "js/main.js"%}"></script>
 
 {% endblock content %}
